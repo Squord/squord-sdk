@@ -1,0 +1,11 @@
+{
+  "name": "squord-ping-bot-example",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@squord/bot": "workspace:*"
+  }
+}

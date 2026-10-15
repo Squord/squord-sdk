@@ -1,0 +1,11 @@
+{
+  "name": "squord-usage-demo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@squord/bot": "file:../packages/bot"
+  }
+}

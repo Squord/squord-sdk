@@ -1,0 +1,26 @@
+{
+  "name": "squord-sdk",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Monorepo do SDK oficial de bots do Squord para JavaScript/Node.js",
+  "license": "MIT",
+  "packageManager": "pnpm@9.15.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Squord/squord-bot-sdk.git"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "build": "pnpm --filter @squord/bot build",
+    "test": "pnpm --filter @squord/bot test",
+    "typecheck": "pnpm --filter @squord/bot typecheck",
+    "lint": "pnpm --filter @squord/bot lint",
+    "pack": "pnpm --filter @squord/bot pack",
+    "example:ping": "node examples/ping-bot/index.js"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0"
+  }
+}

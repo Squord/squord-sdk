@@ -1,0 +1,72 @@
+{
+  "name": "@squord/bot",
+  "version": "0.1.0",
+  "description": "SDK oficial para criar bots do Squord em JavaScript e TypeScript: REST tipado, gateway em tempo real, comandos, interações e moderação.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.js"
+    },
+    "./testing": {
+      "types": "./dist/testing/index.d.ts",
+      "import": "./dist/testing/index.js",
+      "require": "./dist/testing/index.cjs",
+      "default": "./dist/testing/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "tsup"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.6.0",
+    "vitest": "^3.0.0"
+  },
+  "keywords": [
+    "squord",
+    "bot",
+    "sdk",
+    "gateway",
+    "websocket",
+    "discord-like",
+    "space"
+  ],
+  "author": {
+    "name": "Squord",
+    "url": "https://squord.com.br"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Squord/squord-bot-sdk.git",
+    "directory": "packages/bot"
+  },
+  "bugs": {
+    "url": "https://github.com/Squord/squord-bot-sdk/issues"
+  },
+  "homepage": "https://docs.squord.com.br",
+  "publishConfig": {
+    "access": "public"
+  }
+}

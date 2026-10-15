@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    name: Verificar (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [20, 22, 24]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        # versão lida do packageManager do package.json raiz
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: pnpm
+
+      - name: Instalar dependências
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck (strict)
+        run: pnpm typecheck
+
+      - name: Testes (unit + integração com gateway simulado)
+        run: pnpm test
+
+      - name: Build (ESM + CJS + tipos)
+        run: pnpm build
+
+      - name: Smoke dos bundles
+        working-directory: packages/bot
+        run: |
+          node scripts/smoke.mjs
+          node scripts/smoke.cjs
