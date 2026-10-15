@@ -55,5 +55,13 @@ jobs:
 
       - name: Resumo
         run: |
-          echo "✅ Publicado:"
-          npm view @squord/sdk version --registry https://registry.npmjs.org/
+          echo "⏳ Aguardando o registro propagar @squord/sdk..."
+          for tentativa in $(seq 1 12); do
+            if npm view @squord/sdk version --registry https://registry.npmjs.org/ >/dev/null 2>&1; then
+              echo "✅ No ar:"
+              npm view @squord/sdk version dist.tarball --registry https://registry.npmjs.org/
+              exit 0
+            fi
+            sleep 30
+          done
+          echo "::warning::A publicação foi aceita, mas o registro ainda está propagando. Confira https://www.npmjs.com/package/@squord/sdk em alguns minutos."
