@@ -3,7 +3,7 @@
  *
  * O SDK usa o `WebSocket` global do Node.js (22+) por padrão e aceita
  * qualquer implementação compatível — inclusive o pacote `ws` e os mocks
- * de teste (`@squord/bot/testing`).
+ * de teste (`@squord/sdk/testing`).
  */
 
 export interface WebSocketCloseEvent {

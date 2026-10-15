@@ -1,7 +1,7 @@
 {
-  "name": "@squord/bot",
+  "name": "@squord/sdk",
   "version": "0.1.0",
-  "description": "SDK oficial para criar bots do Squord em JavaScript e TypeScript: REST tipado, gateway em tempo real, comandos, interações e moderação.",
+  "description": "O SDK oficial do Squord para criar bots em JavaScript e TypeScript: REST tipado, gateway em tempo real, comandos, interações e moderação.",
   "license": "MIT",
   "type": "module",
   "sideEffects": false,
@@ -59,11 +59,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Squord/squord-bot-sdk.git",
-    "directory": "packages/bot"
+    "url": "git+https://github.com/Squord/squord-sdk.git",
+    "directory": "packages/sdk"
   },
   "bugs": {
-    "url": "https://github.com/Squord/squord-bot-sdk/issues"
+    "url": "https://github.com/Squord/squord-sdk/issues"
   },
   "homepage": "https://docs.squord.com.br",
   "publishConfig": {

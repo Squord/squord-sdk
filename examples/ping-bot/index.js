@@ -5,7 +5,7 @@
 // 3. export SQUORD_BOT_TOKEN="sqb_..."
 // 4. node index.js
 
-import { SquordClient } from "@squord/bot";
+import { SquordClient } from "@squord/sdk";
 
 const client = new SquordClient({
   token: process.env.SQUORD_BOT_TOKEN,

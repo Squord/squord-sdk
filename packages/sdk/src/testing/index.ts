@@ -1,5 +1,5 @@
 /**
- * @squord/bot/testing — ferramentas para testar bots sem uma comunidade real.
+ * @squord/sdk/testing — ferramentas para testar bots sem uma comunidade real.
  *
  * - `createMockRest()`: servidor REST em memória (passe `fetchImpl` ao cliente).
  * - `createMockGateway()`: gateway simulado que fala o protocolo real
@@ -51,8 +51,8 @@ export interface MockEnvironment {
  * falando o protocolo real.
  *
  * ```js
- * import { SquordClient } from "@squord/bot";
- * import { createMockEnvironment, fixtures } from "@squord/bot/testing";
+ * import { SquordClient } from "@squord/sdk";
+ * import { createMockEnvironment, fixtures } from "@squord/sdk/testing";
  *
  * const env = createMockEnvironment();
  * const client = new SquordClient({ token: "sqb_1.demo", ...env.options });

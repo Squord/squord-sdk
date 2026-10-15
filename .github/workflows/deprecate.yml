@@ -1,0 +1,47 @@
+name: Descontinuar pacote npm
+
+# Manutenção controlada: marca um pacote @squord/* como descontinuado no npm,
+# exibindo a mensagem a quem tentar instalá-lo. Usado, por exemplo, em
+# renomeações de pacote — como a transição de @squord/bot para @squord/sdk.
+#
+# Requisitos: o secret NPM_TOKEN (o mesmo do workflow de publicação) e um
+# pacote dentro do escopo @squord (guardado no passo de validação).
+
+on:
+  workflow_dispatch:
+    inputs:
+      package:
+        description: "Pacote a descontinuar (ex: @squord/bot)"
+        required: true
+      message:
+        description: "Mensagem exibida a quem instalar"
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  deprecate:
+    name: "npm deprecate ${{ inputs.package }}"
+    runs-on: ubuntu-latest
+    environment: npm
+    steps:
+      - name: Validar escopo
+        run: |
+          if [[ ! "${{ inputs.package }}" =~ ^@squord/ ]]; then
+            echo "::error::Só é permitido descontinuar pacotes do escopo @squord (recebido: ${{ inputs.package }})"
+            exit 1
+          fi
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org/
+
+      - name: Descontinuar
+        run: npm deprecate "${{ inputs.package }}" "${{ inputs.message }}"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Estado do pacote
+        run: npm view "${{ inputs.package }}" deprecated --registry https://registry.npmjs.org/ || echo "(sem mensagem de deprecação)"

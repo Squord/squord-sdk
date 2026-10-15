@@ -1,10 +1,10 @@
-# @squord/bot — SDK oficial de bots do Squord
+# @squord/sdk — o SDK oficial do Squord
 
-[![CI](https://github.com/Squord/squord-bot-sdk/actions/workflows/ci.yml/badge.svg)](https://github.com/Squord/squord-bot-sdk/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/@squord/bot.svg?label=%40squord%2Fbot)](https://www.npmjs.com/package/@squord/bot)
+[![CI](https://github.com/Squord/squord-sdk/actions/workflows/ci.yml/badge.svg)](https://github.com/Squord/squord-sdk/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/@squord%2Fsdk.svg?label=%40squord%2Fsdk)](https://www.npmjs.com/package/@squord/sdk)
 [![Node LTS](https://img.shields.io/badge/node-%3E%3D20-339933)](https://nodejs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6)](https://www.typescriptlang.org)
-[![Testes](https://img.shields.io/badge/testes-90%2F90-passing-brightgreen)](packages/bot/test)
+[![Testes](https://img.shields.io/badge/testes-90%2F90-passing-brightgreen)](packages/sdk/test)
 [![Licença: MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-blue)](./LICENSE)
 
 O SDK para criar bots do [Squord](https://docs.squord.com.br) em JavaScript e TypeScript:
@@ -13,11 +13,11 @@ botões e menus, uploads, moderação, permissões e testes — sem você implem
 WebSocket, retry ou rate limit à mão.
 
 ```bash
-npm install @squord/bot
+npm install @squord/sdk
 ```
 
 ```ts
-import { SquordClient } from "@squord/bot";
+import { SquordClient } from "@squord/sdk";
 
 const client = new SquordClient({ token: process.env.SQUORD_BOT_TOKEN! });
 
@@ -59,7 +59,7 @@ await client.login();
 ## Começo rápido
 
 ```ts
-import { SquordClient } from "@squord/bot";
+import { SquordClient } from "@squord/sdk";
 
 const client = new SquordClient({
   token: process.env.SQUORD_BOT_TOKEN!, // sqb_<id>.<segredo>
@@ -90,7 +90,7 @@ deduplicação de eventos — é responsabilidade do SDK.
 ## Instalação e requisitos
 
 ```bash
-npm install @squord/bot        # ESM e CommonJS, tipos incluídos
+npm install @squord/sdk        # ESM e CommonJS, tipos incluídos
 ```
 
 - **Node.js 20+**. O gateway usa o `WebSocket` global (estável no 22+); no Node 20,
@@ -100,11 +100,11 @@ npm install @squord/bot        # ESM e CommonJS, tipos incluídos
 
 ```jsonc
 // package.json consumer, se estiver no Node 20:
-{ "dependencies": { "@squord/bot": "^0.1.0", "ws": "^8" } }
+{ "dependencies": { "@squord/sdk": "^0.1.0", "ws": "^8" } }
 ```
 
 ```ts
-import { SquordClient } from "@squord/bot";
+import { SquordClient } from "@squord/sdk";
 import WebSocket from "ws";
 
 const client = new SquordClient({ token, ws: (url) => new WebSocket(url) });
@@ -150,7 +150,7 @@ O `CommandRegistry` cuida dos três tipos. Ele é opcional: você também pode
 tratar `message.created`/`interaction.created` na mão.
 
 ```ts
-import { CommandRegistry, SquordClient, EmbedBuilder, userMention } from "@squord/bot";
+import { CommandRegistry, SquordClient, EmbedBuilder, userMention } from "@squord/sdk";
 
 const client = new SquordClient({ token });
 const commands = new CommandRegistry(client, { prefix: "!" });
@@ -203,7 +203,7 @@ await client.login(); // slash commands são publicados no ready
 ## Interações: botões e menus
 
 ```ts
-import { ActionRowBuilder, Buttons, SelectMenuBuilder } from "@squord/bot";
+import { ActionRowBuilder, Buttons, SelectMenuBuilder } from "@squord/sdk";
 
 const row = new ActionRowBuilder()
   .addButton(Buttons.primary("Confirmar").setCustomId("confirmar"))
@@ -226,7 +226,7 @@ Efeitas (`ephemeral: true`) só aceitam botões de link.
 ## Mensagens, embeds e anexos
 
 ```ts
-import { EmbedBuilder } from "@squord/bot";
+import { EmbedBuilder } from "@squord/sdk";
 
 // Menções seguras por padrão: sem allowedMentions, o SDK envia
 // { users: true, roles: false, everyone: false }.
@@ -303,7 +303,7 @@ com o `code` estável para você decidir).
 Permissões são **strings decimais** de 64 bits: calcule com `BigInt`.
 
 ```ts
-import { Permissions, permissionsToString } from "@squord/bot";
+import { Permissions, permissionsToString } from "@squord/sdk";
 
 const bits = Permissions.VIEW_CHANNEL | Permissions.SEND_MESSAGES | Permissions.EMBED_LINKS;
 console.log(permissionsToString(bits)); // "139713"
@@ -341,7 +341,7 @@ Além do 429 reativo, o SDK observa os headers `X-RateLimit-*` (bloqueia a rota 
 a janela renovar) e aplica um teto global conservador de 45 req/s (o oficial é 50).
 
 ```ts
-import { RateLimitError, PermissionError, SquordAPIError } from "@squord/bot";
+import { RateLimitError, PermissionError, SquordAPIError } from "@squord/sdk";
 
 try {
   await channel.send("oi");
@@ -400,12 +400,12 @@ await client.destroy();
 
 ## Testando seu bot
 
-O subpath `@squord/bot/testing` traz um gateway simulado (que fala o protocolo
+O subpath `@squord/sdk/testing` traz um gateway simulado (que fala o protocolo
 real) e um REST em memória:
 
 ```ts
-import { SquordClient } from "@squord/bot";
-import { createMockGateway, createMockRest, fixtures } from "@squord/bot/testing";
+import { SquordClient } from "@squord/sdk";
+import { createMockGateway, createMockRest, fixtures } from "@squord/sdk/testing";
 
 const rest = createMockRest();
 rest.get("/bots/@me", () => ({ status: 200, body: fixtures.bot() }));
@@ -469,7 +469,7 @@ desta versão). Não há mecanismo para contornar permissões.
 
 ```
 squord-sdk/
-├── packages/bot/          # @squord/bot (o único pacote publicado)
+├── packages/sdk/          # @squord/sdk (o único pacote publicado)
 │   ├── src/
 │   │   ├── client/        # SquordClient, opções, eventos tipados
 │   │   ├── rest/          # REST, retry, rate limits, paginação
@@ -482,7 +482,7 @@ squord-sdk/
 │   │   ├── cache/         # cache TTL opcional
 │   │   ├── errors/        # hierarquia de erros
 │   │   ├── types/         # tipos dos payloads reais (API + gateway)
-│   │   └── testing/       # @squord/bot/testing: mocks e fixtures
+│   │   └── testing/       # @squord/sdk/testing: mocks e fixtures
 │   └── test/              # 90 testes (unit + integração)
 ├── examples/              # ping-bot, commands-bot, welcome-bot, reports
 └── docs/                  # guias
@@ -495,7 +495,7 @@ pnpm install
 pnpm build        # tsup: ESM + CJS + .d.ts
 pnpm test         # vitest: 90 testes com gateway simulado
 pnpm typecheck    # tsc --noEmit (strict)
-pnpm pack         # gera o tarball (squord-bot-<versão>.tgz) para instalar em outro projeto
+pnpm pack         # gera o tarball (squord-sdk-<versão>.tgz) para instalar em outro projeto
 ```
 
 O `usage-demo/` consome o pacote como um projeto externo (via `file:`) e roda
@@ -508,21 +508,21 @@ cd usage-demo && npm install && npm start
 
 ## Publicar versões no npm
 
-O pacote `@squord/bot` é publicado **automaticamente pelo workflow
+O pacote `@squord/sdk` é publicado **automaticamente pelo workflow
 [Publicar no npm](.github/workflows/publish.yml)** quando um Release do GitHub
 é criado — com typecheck, testes, build e *provenance*.
 
 Configuração única (secret `NPM_TOKEN`): crie um token de automação no npmjs.com
 (Access Tokens → **Automation**, com permissão de escrever no pacote
-`@squord/bot`) e:
+`@squord/sdk`) e:
 
 ```bash
-gh secret set NPM_TOKEN --repo Squord/squord-bot-sdk
+gh secret set NPM_TOKEN --repo Squord/squord-sdk
 ```
 
 Corte uma versão:
 
-1. Atualize `packages/bot/package.json` e o [CHANGELOG.md](./CHANGELOG.md)
+1. Atualize `packages/sdk/package.json` e o [CHANGELOG.md](./CHANGELOG.md)
 2. `git tag v0.x.y && git push --tags`
 3. Crie o Release do GitHub — o workflow publica no npm
 
@@ -530,9 +530,9 @@ Enquanto o pacote não está no npm, consuma pelo tarball (gerado a partir do
 repositório):
 
 ```bash
-git clone https://github.com/Squord/squord-bot-sdk && cd squord-bot-sdk
-pnpm install && pnpm pack          # gera packages/bot/squord-bot-0.1.0.tgz
-npm install /caminho/para/squord-bot-0.1.0.tgz
+git clone https://github.com/Squord/squord-sdk && cd squord-sdk
+pnpm install && pnpm pack          # gera packages/sdk/squord-sdk-0.1.0.tgz
+npm install /caminho/para/squord-sdk-0.1.0.tgz
 ```
 
 ---
@@ -540,6 +540,6 @@ npm install /caminho/para/squord-bot-0.1.0.tgz
 **Documentação da plataforma**: <https://docs.squord.com.br> ·
 **Referência REST (OpenAPI)**: <https://docs.squord.com.br/api> ·
 **Protocolo do gateway**: <https://docs.squord.com.br/gateway/visao-geral> ·
-**Issues**: <https://github.com/Squord/squord-bot-sdk/issues>
+**Issues**: <https://github.com/Squord/squord-sdk/issues>
 
 MIT © Squord — veja [LICENSE](./LICENSE).

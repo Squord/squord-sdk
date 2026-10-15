@@ -1,10 +1,10 @@
 /**
- * @squord/bot — SDK oficial de bots do Squord para JavaScript e TypeScript.
+ * @squord/sdk — o SDK oficial do Squord para JavaScript e TypeScript.
  *
  * Documentação da plataforma: https://docs.squord.com.br
  *
  * ```ts
- * import { SquordClient } from "@squord/bot";
+ * import { SquordClient } from "@squord/sdk";
  *
  * const client = new SquordClient({ token: process.env.SQUORD_BOT_TOKEN! });
  *

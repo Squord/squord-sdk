@@ -1,14 +1,14 @@
 # Testando seu bot
 
 Como testar bots do Squord sem uma comunidade real — com o subpath
-`@squord/bot/testing`, que traz um gateway simulado (protocolo real em memória)
+`@squord/sdk/testing`, que traz um gateway simulado (protocolo real em memória)
 e um REST em memória.
 
 ## Setup
 
 ```ts
-import { SquordClient } from "@squord/bot";
-import { createMockGateway, createMockRest, fixtures } from "@squord/bot/testing";
+import { SquordClient } from "@squord/sdk";
+import { createMockGateway, createMockRest, fixtures } from "@squord/sdk/testing";
 
 function makeClient() {
   const rest = createMockRest();
@@ -100,7 +100,7 @@ o erro aparece na hora.
 ## Testando handlers isoladamente
 
 ```ts
-import { CommandRegistry } from "@squord/bot";
+import { CommandRegistry } from "@squord/sdk";
 
 it("comando de texto responde com os args certos", async () => {
   const { client, gateway } = makeClient();
@@ -126,8 +126,8 @@ só a rede é falsa.
 ## O que os próprios testes do SDK cobrem
 
 A suíte do pacote (90 testes) exercita exatamente esses fluxos e serve de
-receita: `packages/bot/test/unit` (builders, parser, cache, permissões,
+receita: `packages/sdk/test/unit` (builders, parser, cache, permissões,
 intents, backoff, política de retries do REST, rate limits locais) e
-`packages/bot/test/integration` (login, eventos hidratados, respostas com
+`packages/sdk/test/integration` (login, eventos hidratados, respostas com
 nonce, interações, comandos com cooldown, upload completo, resume,
 invalid_session, zumbi, reconnect do servidor).

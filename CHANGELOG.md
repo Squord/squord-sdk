@@ -42,7 +42,7 @@ protocolo do gateway documentados em <https://docs.squord.com.br>.
   resolução local de overwrites seguindo o algoritmo oficial.
 - **Cache opcional** com TTL e limite de itens; **logger** estruturado com
   redação automática de tokens.
-- **`@squord/bot/testing`**: `MockGateway` (fala o protocolo real em memória),
+- **`@squord/sdk/testing`**: `MockGateway` (fala o protocolo real em memória),
   `MockRest`, `createMockEnvironment` e `fixtures` com payloads da documentação.
 - Documentação em português (README + guias), 90 testes (unit + integração),
   build ESM/CJS e 4 exemplos de bots.

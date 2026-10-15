@@ -6,6 +6,6 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "@squord/bot": "workspace:*"
+    "@squord/sdk": "workspace:*"
   }
 }

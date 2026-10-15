@@ -37,7 +37,7 @@ jobs:
         run: pnpm build
 
       - name: Smoke dos bundles
-        working-directory: packages/bot
+        working-directory: packages/sdk
         run: |
           node scripts/smoke.mjs
           node scripts/smoke.cjs

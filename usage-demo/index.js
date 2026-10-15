@@ -1,22 +1,22 @@
-// Demonstração standalone do consumo do @squord/bot instalado via `file:`.
+// Demonstração standalone do consumo do @squord/sdk instalado via `file:`.
 //
 // Passos:
-//   pnpm build     (na raiz do monorepo, para gerar packages/bot/dist)
+//   pnpm build     (na raiz do monorepo, para gerar packages/sdk/dist)
 //   npm install    (aqui no usage-demo)
 //   npm start
 //
 // Sem SQUORD_BOT_TOKEN no ambiente, o script roda contra os mocks oficiais
-// (@squord/bot/testing) e valida a instalação de ponta a ponta, sem rede.
+// (@squord/sdk/testing) e valida a instalação de ponta a ponta, sem rede.
 // COM um token real, ele conecta ao Squord de verdade e responde !ping.
 
-import { SquordClient } from "@squord/bot";
+import { SquordClient } from "@squord/sdk";
 
 const realToken = process.env.SQUORD_BOT_TOKEN;
 
 // Modo demo (sem token): ambiente mockado completo em uma chamada.
 const mockEnv = realToken
   ? null
-  : (await import("@squord/bot/testing")).createMockEnvironment();
+  : (await import("@squord/sdk/testing")).createMockEnvironment();
 
 const client = new SquordClient({
   token: realToken ?? "sqb_1300000000000000010.demo",
@@ -41,7 +41,7 @@ client.on("message.created", async (message) => {
 await client.login();
 
 if (mockEnv) {
-  const { fixtures } = await import("@squord/bot/testing");
+  const { fixtures } = await import("@squord/sdk/testing");
   mockEnv.gateway.emitEvent("message.created", {
     message: fixtures.message({ content: "!ping" }),
   });

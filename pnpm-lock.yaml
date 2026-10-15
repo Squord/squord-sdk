@@ -14,29 +14,29 @@ importers:
 
   examples/commands-bot:
     dependencies:
-      '@squord/bot':
+      '@squord/sdk':
         specifier: workspace:*
-        version: link:../../packages/bot
+        version: link:../../packages/sdk
 
   examples/ping-bot:
     dependencies:
-      '@squord/bot':
+      '@squord/sdk':
         specifier: workspace:*
-        version: link:../../packages/bot
+        version: link:../../packages/sdk
 
   examples/scheduled-reports:
     dependencies:
-      '@squord/bot':
+      '@squord/sdk':
         specifier: workspace:*
-        version: link:../../packages/bot
+        version: link:../../packages/sdk
 
   examples/welcome-bot:
     dependencies:
-      '@squord/bot':
+      '@squord/sdk':
         specifier: workspace:*
-        version: link:../../packages/bot
+        version: link:../../packages/sdk
 
-  packages/bot:
+  packages/sdk:
     devDependencies:
       '@types/node':
         specifier: ^22.0.0

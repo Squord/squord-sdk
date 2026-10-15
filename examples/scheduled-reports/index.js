@@ -6,7 +6,7 @@
 // export SQUORD_BOT_TOKEN="sqb_..."
 // export SQUORD_CHANNEL_ID="1300000000000000040"
 
-import { EmbedBuilder, SquordClient } from "@squord/bot";
+import { EmbedBuilder, SquordClient } from "@squord/sdk";
 
 const client = new SquordClient({
   token: process.env.SQUORD_BOT_TOKEN,

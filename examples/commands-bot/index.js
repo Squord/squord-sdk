@@ -13,7 +13,7 @@ import {
   SquordClient,
   Permissions,
   userMention,
-} from "@squord/bot";
+} from "@squord/sdk";
 
 const client = new SquordClient({
   token: process.env.SQUORD_BOT_TOKEN,

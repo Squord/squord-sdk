@@ -7,17 +7,17 @@
   "packageManager": "pnpm@9.15.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Squord/squord-bot-sdk.git"
+    "url": "git+https://github.com/Squord/squord-sdk.git"
   },
   "engines": {
     "node": ">=20.0.0"
   },
   "scripts": {
-    "build": "pnpm --filter @squord/bot build",
-    "test": "pnpm --filter @squord/bot test",
-    "typecheck": "pnpm --filter @squord/bot typecheck",
-    "lint": "pnpm --filter @squord/bot lint",
-    "pack": "pnpm --filter @squord/bot pack",
+    "build": "pnpm --filter @squord/sdk build",
+    "test": "pnpm --filter @squord/sdk test",
+    "typecheck": "pnpm --filter @squord/sdk typecheck",
+    "lint": "pnpm --filter @squord/sdk lint",
+    "pack": "pnpm --filter @squord/sdk pack",
     "example:ping": "node examples/ping-bot/index.js"
   },
   "devDependencies": {

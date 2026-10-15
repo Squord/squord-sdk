@@ -9,7 +9,7 @@ Permissões trafegam como **strings decimais** de 64 bits. Calcule com `BigInt`
 (todos os utilitários do SDK fazem isso); nunca com `number`.
 
 ```ts
-import { Permissions, permissionsToString, parsePermissions } from "@squord/bot";
+import { Permissions, permissionsToString, parsePermissions } from "@squord/sdk";
 
 const bits = Permissions.VIEW_CHANNEL | Permissions.SEND_MESSAGES | Permissions.EMBED_LINKS;
 console.log(permissionsToString(bits)); // "139713" — é isso que vai na API
@@ -37,7 +37,7 @@ const bits = await client.myPermissionsIn(channelId);
 await client.hasPermissionsIn(channelId, Permissions.SEND_MESSAGES, Permissions.EMBED_LINKS);
 
 // O algoritmo oficial também é utilidade pública:
-import { resolveChannelPermissions } from "@squord/bot";
+import { resolveChannelPermissions } from "@squord/sdk";
 ```
 
 A verificação local é conveniência para evitar chamadas fúteis; **o backend é a
