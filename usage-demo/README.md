@@ -27,5 +27,5 @@ Para simular a instalação como no npm (tarball):
 
 ```bash
 pnpm pack                       # gera packages/sdk/squord-sdk-<versão>.tgz
-npm install ../packages/sdk/squord-sdk-0.1.0.tgz
+npm install ../packages/sdk/squord-sdk-0.2.0.tgz
 ```

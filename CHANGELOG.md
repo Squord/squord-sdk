@@ -6,6 +6,8 @@ versionamento é [SemVer](https://semver.org/lang/pt-BR/).
 
 ## [Unreleased]
 
+## [0.2.0] — 2026-11-05
+
 ### Adicionado
 
 - `client.messages.bulkDelete(channelId, ids)`: apaga até 100 mensagens numa chamada (`MANAGE_MESSAGES`) e devolve os ids apagados.

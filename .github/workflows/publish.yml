@@ -38,6 +38,17 @@ jobs:
           cache: pnpm
           registry-url: https://registry.npmjs.org/
 
+      # O npm recusa republicar uma versão; falhar aqui poupa o build e explica o que fazer.
+      - name: Conferir se a versão é nova
+        working-directory: packages/sdk
+        run: |
+          versao=$(node -p "require('./package.json').version")
+          if npm view "@squord/sdk@$versao" version --registry https://registry.npmjs.org/ 2>/dev/null | grep -qx "$versao"; then
+            echo "::error::@squord/sdk@$versao já está no npm. Suba a versão em packages/sdk/package.json e no CHANGELOG.md antes de publicar."
+            exit 1
+          fi
+          echo "Publicando @squord/sdk@$versao"
+
       - name: Instalar dependências
         run: pnpm install --frozen-lockfile
 
