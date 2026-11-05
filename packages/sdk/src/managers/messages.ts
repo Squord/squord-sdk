@@ -3,6 +3,7 @@
  */
 
 import { resolveMessageEditPayload, resolveMessagePayload, safeAllowedMentions } from "../builders/message";
+import { SquordTypeError } from "../errors";
 import type { RestClient } from "../rest/RestClient";
 import type {
   APIMessage,
@@ -92,6 +93,23 @@ export class MessagesManager {
     return this.rest
       .delete<null>(`/channels/${channelId}/messages/${messageId}`, { signal: options.signal })
       .then(() => undefined);
+  }
+
+  /**
+   * Apaga até 100 mensagens do canal numa chamada (`MANAGE_MESSAGES`). Devolve os ids que foram
+   * apagados: ids inexistentes, já apagados ou de outro canal são ignorados pelo servidor.
+   */
+  async bulkDelete(channelId: Snowflake, messageIds: Snowflake[], options: { signal?: AbortSignal } = {}): Promise<Snowflake[]> {
+    if (messageIds.length < 1 || messageIds.length > 100) {
+      throw new SquordTypeError("bulkDelete aceita de 1 a 100 ids");
+    }
+    const response = await this.rest.post<{ messageIds: Snowflake[] }>(
+      `/channels/${channelId}/messages/bulk-delete`,
+      { messageIds },
+      // Repetir não apaga nada duas vezes: ids já apagados são ignorados.
+      { signal: options.signal, retryable: true },
+    );
+    return response.messageIds;
   }
 
   /** Reage a uma mensagem (`ADD_REACTIONS`). `emoji` é o caractere ou `<:nome:id>`. */

@@ -4,6 +4,12 @@ As mudanças notáveis deste projeto ficam documentadas aqui.
 O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o
 versionamento é [SemVer](https://semver.org/lang/pt-BR/).
 
+## [Unreleased]
+
+### Adicionado
+
+- `client.messages.bulkDelete(channelId, ids)`: apaga até 100 mensagens numa chamada (`MANAGE_MESSAGES`) e devolve os ids apagados.
+
 ## [0.1.0] — 2026-10-15
 
 Primeira versão do SDK oficial de bots do Squord, alinhada à API v1 e ao
