@@ -100,7 +100,7 @@ npm install @squord/sdk        # ESM e CommonJS, tipos incluídos
 
 ```jsonc
 // package.json consumer, se estiver no Node 20:
-{ "dependencies": { "@squord/sdk": "^0.1.0", "ws": "^8" } }
+{ "dependencies": { "@squord/sdk": "^0.2.0", "ws": "^8" } }
 ```
 
 ```ts
@@ -531,8 +531,8 @@ repositório):
 
 ```bash
 git clone https://github.com/Squord/squord-sdk && cd squord-sdk
-pnpm install && pnpm pack          # gera packages/sdk/squord-sdk-0.1.0.tgz
-npm install /caminho/para/squord-sdk-0.1.0.tgz
+pnpm install && pnpm pack          # gera packages/sdk/squord-sdk-0.2.0.tgz
+npm install /caminho/para/squord-sdk-0.2.0.tgz
 ```
 
 ---

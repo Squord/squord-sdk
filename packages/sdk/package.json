@@ -1,6 +1,6 @@
 {
   "name": "@squord/sdk",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "O SDK oficial do Squord para criar bots em JavaScript e TypeScript: REST tipado, gateway em tempo real, comandos, interações e moderação.",
   "license": "MIT",
   "type": "module",
